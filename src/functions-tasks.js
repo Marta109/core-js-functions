@@ -137,6 +137,7 @@ function memoize(func) {
  * }, 2);
  * retryer() => 2
  */
+
 function retry(func, attempts) {
   return () => {
     for (let attempt = 1; attempt <= attempts; attempt += 1) {
@@ -213,8 +214,17 @@ function partialUsingArguments(/* fn, ...args1 */) {
  *   getId4() => 7
  *   getId10() => 11
  */
-function getIdGeneratorFunction(/* startFrom */) {
-  throw new Error('Not implemented');
+function getIdGeneratorFunction(startFrom) {
+  let startNum = startFrom;
+  let isStart = false;
+  return () => {
+    if (!isStart) {
+      isStart = true;
+      return startNum;
+    }
+    startNum += 1;
+    return startNum;
+  };
 }
 
 module.exports = {
