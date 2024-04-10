@@ -33,15 +33,10 @@ function getCurrentFunctionName() {
  *
  */
 function getFunctionBody(func) {
-  // console.log(func.toString());
   if (func) return func.toString();
   return '';
 }
 
-// function hiHello() {
-//   console.log('hello world');
-// }
-// getFunctionBody(hiHello); //=> "function hiHello() { console.log('hello world'); }"
 /**
  * Returns the array where each element is the count of function arguments.
  *
@@ -56,8 +51,11 @@ function getFunctionBody(func) {
  *  ]) => [0, 1, 2]
  *
  */
-function getArgumentsCount(/* funcs */) {
-  throw new Error('Not implemented');
+function getArgumentsCount(funcs) {
+  return funcs.reduce((arr, el) => {
+    arr.push(el.length);
+    return arr;
+  }, []);
 }
 
 /**
