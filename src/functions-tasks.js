@@ -193,8 +193,15 @@ function logger(/* func, logFunc */) {
  *   partialUsingArguments(fn, 'a','b','c')('d') => 'abcd'
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
-function partialUsingArguments(/* fn, ...args1 */) {
-  throw new Error('Not implemented');
+function partialUsingArguments(fn, ...args1) {
+  let str = fn(args1);
+  return (...arg) => {
+    str += arg;
+    str = str.replace(/undefined/g, '');
+    str = str.replace(/,/g, '');
+    return str;
+  };
+  // console.log(args1);
 }
 
 /**
